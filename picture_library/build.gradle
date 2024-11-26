@@ -6,8 +6,6 @@ android {
     defaultConfig {
         minSdkVersion cfgs.minSdkVersion
         targetSdkVersion cfgs.targetSdkVersion
-        versionCode cfgs.versionCode
-        versionName cfgs.versionName
     }
 
     compileOptions {
@@ -21,10 +19,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    lintOptions {
+    namespace 'com.luck.picture.lib'
+    lint {
         abortOnError false
         warning 'InvalidPackage'
     }
+    tasks.withType(JavaExec) {
+        jvmArgs '--add-opens', 'java.base/java.io=ALL-UNNAMED'
+    }
+
 }
 
 dependencies {
@@ -37,9 +40,9 @@ dependencies {
     implementation "androidx.localbroadcastmanager:localbroadcastmanager:${cfgs.localbroadcastmanager}"
     implementation "androidx.camera:camera-view:${cfgs.camerax_view}"
     api project(':ucrop')
-    api 'com.otaliastudios:transcoder:0.9.1'
+    api 'com.otaliastudios:transcoder:0.11.2'
 //    api 'com.googlecode.mp4parser:isoparser:1.1.22'
-    api 'jp.co.cyberagent.android:gpuimage:2.0.4'
+    api 'jp.co.cyberagent.android:gpuimage:2.1.0'
 }
 
-apply from: 'bintray.gradle'
+//apply from: 'bintray.gradle'

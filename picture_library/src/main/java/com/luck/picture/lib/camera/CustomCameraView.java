@@ -1,5 +1,6 @@
 package com.luck.picture.lib.camera;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.media.MediaPlayer;
@@ -150,6 +151,7 @@ public class CustomCameraView extends RelativeLayout {
                 mCameraView.setCaptureMode(androidx.camera.view.CameraView.CaptureMode.VIDEO);
                 mCameraView.startRecording(createVideoFile(), ContextCompat.getMainExecutor(getContext()),
                         new VideoCapture.OnVideoSavedCallback() {
+                            @SuppressLint("RestrictedApi")
                             @Override
                             public void onVideoSaved(@NonNull File file) {
                                 mVideoFile = file;
@@ -180,6 +182,7 @@ public class CustomCameraView extends RelativeLayout {
                                 }
                             }
 
+                            @SuppressLint("RestrictedApi")
                             @Override
                             public void onError(int videoCaptureError, @NonNull String message, @Nullable Throwable cause) {
                                 if (mCameraListener != null) {
